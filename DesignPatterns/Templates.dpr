@@ -21,7 +21,8 @@ uses
   AbstractFactory in 'Patterns\Creational\AbstractFactory.pas',
   Builder in 'Patterns\Creational\Builder.pas',
   Prototype in 'Patterns\Creational\Prototype.pas',
-  Singleton in 'Patterns\Creational\Singleton.pas';
+  Singleton in 'Patterns\Creational\Singleton.pas',
+  ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas';
 
 {$REGION ' Custom Observer '}
 type
@@ -150,8 +151,6 @@ begin
 //    MathStrAdapter  := TMathStrAdapter.Create(TMathOper.Create());
 //    MathStrClient   := TMathStrClient.Create(MathStrAdapter);
 //    MathStrClient.DoWork('30', '35');
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Adapter Auth '}
@@ -163,8 +162,6 @@ begin
 //
 //    AuthClient := TClientThatNeedsAuth.Create(TwitterAuthService);
 //    AuthClient.DoAuth();
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Facade '}
@@ -190,8 +187,6 @@ begin
 //        {AImageLibrary  }TImageLibrary.Create()));
 //    ImageClient.DownloadImage('http://site.com/sun.jpg');
 //    ImageClient.DownloadImage('http://mail.com/logo.jpg');
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Decorator '}
@@ -214,7 +209,6 @@ begin
 //    SecureDataSource := TSecureFileDataSource.Create(DataSource);
 //    SecureDataSource.Write('Secret string');
 //    SecureDataSource.Read();
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Decorator Image Editor '}
@@ -230,8 +224,6 @@ begin
 //    ColorFilter := TMyColorImageFilter.Create(BlurFilter, 'Color editor', 90, 105, 110);
 //    ColorFilter.Proccess();
 //    Writeln;
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Proxy '}
@@ -242,7 +234,6 @@ begin
 //    WebService.Download(20);
 //    WebService.Download(20);
 //    WebService.Download(25);
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Proxy Profile '}
@@ -254,8 +245,6 @@ begin
 //    ProfileClient.GetProfile(2, True);
 //    ProfileClient.GetProfile(3, False);
 //    ProfileClient.GetProfile(3, True);
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Bridge '}
@@ -300,8 +289,6 @@ begin
 //      AdvancedRemote.ChannelDown();
 //    AdvancedRemote.Mute();
 //    AdvancedRemote.TogglePower();
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Bridge Sharing Service '}
@@ -314,8 +301,6 @@ begin
 //    ViewController.SetService(TInstagramSharingService.Create());
 //    ViewController.Publish(
 //      TPollContent.Create('Beach', 'I am on the beach', '#sun #beach', nil));
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Composite '}
@@ -326,8 +311,6 @@ begin
 //    Node.Add(TNode.Create('Полковник Петя'));
 //    Node.Add(TLeaf.Create('Секретарь Лена'));
 //    Node.Operation();
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Composite UI Theme '}
@@ -344,8 +327,6 @@ begin
 //    NightTheme   := TUITheme.Create('Night Theme', 'DarkGray', 'LightGray', 'White');
 //    Form1.SetTheme(NightTheme);
 //    Writeln('');
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Flyweight '}
@@ -356,8 +337,6 @@ begin
 //    Forest.PlantTree('Birch', 'white', '', 1, 15);
 //    Forest.PlantTree('Pine', 'brown', '', 20, 10);
 //    Forest.Draw();
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Flyweight Animals '}
@@ -368,8 +347,6 @@ begin
 //    AnimalClient.AddAnimalToCatalog(TAnimal.Create('Кот камышовый', 'Белоруссия', akCat));
 //    AnimalClient.AddAnimalToCatalog(TAnimal.Create('Бульдог', 'Германия', akDog));
 //    AnimalClient.AddAnimalToCatalog(TAnimal.Create('Бульдог', 'Италия', akDog));
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Factory Method '}
@@ -396,8 +373,6 @@ begin
 //    Projector2.Present('Dogs information');
 //
 //    ConferenceRoom2.Sync(Projector1);
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Abstract Factory '}
@@ -408,8 +383,6 @@ begin
 //    Writeln('Client 2 orders modern furniture');
 //    FurnitureClient := TFurnitureClient.Create(TModernFurnitureFactory.Create());
 //    FurnitureClient.DoOrder();
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Builder '}
@@ -419,23 +392,19 @@ begin
 //
 //    Writeln('Client wants truck');
 //    CarClient.GetCar(ctTruck);
-//
-//    Readln;
     {$ENDREGION}
 
     {$REGION ' Prototype '}
-    Writeln('Let''s create circle 1');
-    Circle1 := TCircle.Create(10, 20, 'red', 5);
-    Circle1.Name();
-    Writeln('Let''s clone circle 1');
-    Circle2 := Circle1.Clone();
-    Circle2.Name();
-
-    Shape1 := Circle1;
-    Shape2 := Shape1.Clone();
-    Shape2.Name();
-
-    Readln;
+//    Writeln('Let''s create circle 1');
+//    Circle1 := TCircle.Create(10, 20, 'red', 5);
+//    Circle1.Name();
+//    Writeln('Let''s clone circle 1');
+//    Circle2 := Circle1.Clone();
+//    Circle2.Name();
+//
+//    Shape1 := Circle1;
+//    Shape2 := Shape1.Clone();
+//    Shape2.Name();
     {$ENDREGION}
 
     {$REGION ' Singleton '}
@@ -450,10 +419,10 @@ begin
 //    PrivateChatVC.StartReceiveingMessages();
 //    Writeln('Sending messages to all subscribers');
 //    TFriendChatService.GetInstance().SendMessages();
-//
-//    Readln;
     {$ENDREGION}
 
+    Writeln('Press Enter to exit...');
+    Readln;
   except
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
