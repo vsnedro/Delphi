@@ -137,6 +137,16 @@ var
   MessageListVC : IMessageSubscriber;
   PrivateChatVC : IMessageSubscriber;
   {$ENDREGION}
+  {$REGION ' Chain Of Responsibility '}
+  MonkeyHandler   : IHandler;
+  SquirrelHandler : IHandler;
+  DogHandler      : IHandler;
+  HandlerClient   : IHandlerClient;
+
+  AuthWebServiceHandler   : IWebServiceHandler;
+  AccessWebServiceHandler : IWebServiceHandler;
+  WebServiceHandlerClient : IWebServiceHandlerClient;
+  {$ENDREGION}
 
 begin
   try
@@ -421,7 +431,34 @@ begin
 //    TFriendChatService.GetInstance().SendMessages();
     {$ENDREGION}
 
-    Writeln('Press Enter to exit...');
+    {$REGION ' Chain Of Responsibility '}
+    MonkeyHandler   := TMonkeyHandler.Create();
+    SquirrelHandler := TSquirrelHandler.Create();
+    DogHandler      := TDogHandler.Create();
+    MonkeyHandler.SetNextHandler(SquirrelHandler).SetNextHandler(DogHandler);
+
+    HandlerClient := THandlerClient.Create();
+    HandlerClient.Feed('Nuts',   MonkeyHandler);
+    HandlerClient.Feed('Banana', MonkeyHandler);
+    HandlerClient.Feed('Meat',   MonkeyHandler);
+    HandlerClient.Feed('Cup of coffee', MonkeyHandler);
+    HandlerClient.Feed('Banana', SquirrelHandler);
+
+    Writeln('');
+
+    AuthWebServiceHandler   := TAuthWebServiceHandler.Create();
+    AccessWebServiceHandler := TAccessWebServiceHandler.Create();
+    AuthWebServiceHandler.SetNextHandler(AccessWebServiceHandler);
+
+    WebServiceHandlerClient := TWebServiceHandlerClient.Create();
+    WebServiceHandlerClient.Connect('admin', 'admin', AuthWebServiceHandler);
+    WebServiceHandlerClient.Connect('admin', '123456', AuthWebServiceHandler);
+    WebServiceHandlerClient.Connect('Alex', '111', AuthWebServiceHandler);
+    WebServiceHandlerClient.Connect('Justas', '111', AuthWebServiceHandler);
+    WebServiceHandlerClient.Connect('Justas', '222', AuthWebServiceHandler);
+    {$ENDREGION}
+
+    Writeln(sLineBreak + 'Press Enter to exit...');
     Readln;
   except
     on E: Exception do
