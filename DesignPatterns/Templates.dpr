@@ -22,7 +22,8 @@ uses
   Builder in 'Patterns\Creational\Builder.pas',
   Prototype in 'Patterns\Creational\Prototype.pas',
   Singleton in 'Patterns\Creational\Singleton.pas',
-  ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas';
+  ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas',
+  Command in 'Patterns\Behavioral\Command.pas';
 
 {$REGION ' Custom Observer '}
 type
@@ -146,6 +147,9 @@ var
   AuthWebServiceHandler   : IWebServiceHandler;
   AccessWebServiceHandler : IWebServiceHandler;
   WebServiceHandlerClient : IWebServiceHandlerClient;
+  {$ENDREGION}
+  {$REGION ' Command '}
+  MyApplication : IMyApplication;
   {$ENDREGION}
 
 begin
@@ -432,30 +436,54 @@ begin
     {$ENDREGION}
 
     {$REGION ' Chain Of Responsibility '}
-    MonkeyHandler   := TMonkeyHandler.Create();
-    SquirrelHandler := TSquirrelHandler.Create();
-    DogHandler      := TDogHandler.Create();
-    MonkeyHandler.SetNextHandler(SquirrelHandler).SetNextHandler(DogHandler);
+//    MonkeyHandler   := TMonkeyHandler.Create();
+//    SquirrelHandler := TSquirrelHandler.Create();
+//    DogHandler      := TDogHandler.Create();
+//    MonkeyHandler.SetNextHandler(SquirrelHandler).SetNextHandler(DogHandler);
+//
+//    HandlerClient := THandlerClient.Create();
+//    HandlerClient.Feed('Nuts',   MonkeyHandler);
+//    HandlerClient.Feed('Banana', MonkeyHandler);
+//    HandlerClient.Feed('Meat',   MonkeyHandler);
+//    HandlerClient.Feed('Cup of coffee', MonkeyHandler);
+//    HandlerClient.Feed('Banana', SquirrelHandler);
+//
+//    Writeln('');
+//
+//    AuthWebServiceHandler   := TAuthWebServiceHandler.Create();
+//    AccessWebServiceHandler := TAccessWebServiceHandler.Create();
+//    AuthWebServiceHandler.SetNextHandler(AccessWebServiceHandler);
+//
+//    WebServiceHandlerClient := TWebServiceHandlerClient.Create();
+//    WebServiceHandlerClient.Connect('admin', 'admin', AuthWebServiceHandler);
+//    WebServiceHandlerClient.Connect('admin', '123456', AuthWebServiceHandler);
+//    WebServiceHandlerClient.Connect('Alex', '111', AuthWebServiceHandler);
+//    WebServiceHandlerClient.Connect('Justas', '111', AuthWebServiceHandler);
+//    WebServiceHandlerClient.Connect('Justas', '222', AuthWebServiceHandler);
+    {$ENDREGION}
 
-    HandlerClient := THandlerClient.Create();
-    HandlerClient.Feed('Nuts',   MonkeyHandler);
-    HandlerClient.Feed('Banana', MonkeyHandler);
-    HandlerClient.Feed('Meat',   MonkeyHandler);
-    HandlerClient.Feed('Cup of coffee', MonkeyHandler);
-    HandlerClient.Feed('Banana', SquirrelHandler);
+    {$REGION ' Command '}
+    MyApplication := TMyApplication.Create('Some text');
+    MyApplication.CreateUI();
 
-    Writeln('');
+    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
 
-    AuthWebServiceHandler   := TAuthWebServiceHandler.Create();
-    AccessWebServiceHandler := TAccessWebServiceHandler.Create();
-    AuthWebServiceHandler.SetNextHandler(AccessWebServiceHandler);
-
-    WebServiceHandlerClient := TWebServiceHandlerClient.Create();
-    WebServiceHandlerClient.Connect('admin', 'admin', AuthWebServiceHandler);
-    WebServiceHandlerClient.Connect('admin', '123456', AuthWebServiceHandler);
-    WebServiceHandlerClient.Connect('Alex', '111', AuthWebServiceHandler);
-    WebServiceHandlerClient.Connect('Justas', '111', AuthWebServiceHandler);
-    WebServiceHandlerClient.Connect('Justas', '222', AuthWebServiceHandler);
+    MyApplication.ExecuteCommand(MyApplication.CopyCommand);
+    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
+    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
+    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
