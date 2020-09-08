@@ -23,8 +23,10 @@ uses
   Prototype in 'Patterns\Creational\Prototype.pas',
   Singleton in 'Patterns\Creational\Singleton.pas',
   ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas',
-  Command in 'Patterns\Behavioral\Command.pas';
+  Command in 'Patterns\Behavioral\Command.pas',
+  Iterator in 'Patterns\Behavioral\Iterator.pas';
 
+{}
 {$REGION ' Custom Observer '}
 type
   IMyObserver = interface
@@ -59,6 +61,7 @@ type
       const AMessage : String);
   end;
 {$ENDREGION}
+{}
 
 var
   i : Integer;
@@ -150,6 +153,9 @@ var
   {$ENDREGION}
   {$REGION ' Command '}
   MyApplication : IMyApplication;
+  {$ENDREGION}
+  {$REGION ' Iterator '}
+  SocialClient : ISocialClient;
   {$ENDREGION}
 
 begin
@@ -463,27 +469,33 @@ begin
     {$ENDREGION}
 
     {$REGION ' Command '}
-    MyApplication := TMyApplication.Create('Some text');
-    MyApplication.CreateUI();
+//    MyApplication := TMyApplication.Create('Some text');
+//    MyApplication.CreateUI();
+//
+//    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+//    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//
+//    MyApplication.ExecuteCommand(MyApplication.CopyCommand);
+//    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+//    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+//    MyApplication.ExecuteCommand(MyApplication.CutCommand);
+//    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
+//    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
+//    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+//    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    {$ENDREGION}
 
-    MyApplication.ExecuteCommand(MyApplication.CutCommand);
-    MyApplication.ExecuteCommand(MyApplication.CutCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-
-    MyApplication.ExecuteCommand(MyApplication.CopyCommand);
-    MyApplication.ExecuteCommand(MyApplication.CutCommand);
-    MyApplication.ExecuteCommand(MyApplication.CutCommand);
-    MyApplication.ExecuteCommand(MyApplication.CutCommand);
-    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
-    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
-    MyApplication.ExecuteCommand(MyApplication.PasteCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
-    MyApplication.ExecuteCommand(MyApplication.UndoCommand);
+    {$REGION ' Iterator '}
+    SocialClient := TSocialClient.Create(TSocialSpammer.Create());
+    SocialClient.SendMessagesToFriends();
+    SocialClient.SendMessagesToEnemies();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
