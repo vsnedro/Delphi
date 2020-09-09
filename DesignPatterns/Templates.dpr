@@ -24,44 +24,10 @@ uses
   Singleton in 'Patterns\Creational\Singleton.pas',
   ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas',
   Command in 'Patterns\Behavioral\Command.pas',
-  Iterator in 'Patterns\Behavioral\Iterator.pas';
-
-{}
-{$REGION ' Custom Observer '}
-type
-  IMyObserver = interface
-    function GetPhone() : String;
-    function GetEmail() : String;
-    function GetSkype() : String;
-    function GetTelegram() : String;
-    function GetWhatsApp() : String;
-    function GetViber() : String;
-
-    property Phone: String read GetPhone;
-    property Email: String read GetEmail;
-    property Skype: String read GetSkype;
-    property Telegram: String read GetTelegram;
-    property WhatsApp: String read GetWhatsApp;
-    property Viber: String read GetViber;
-  end;
-
-type
-  IMyMessenger = interface;
-
-  IMyEvent = interface
-    procedure Subscribe(
-      AMessenger : IMyMessenger);
-    procedure Unsubscribe(
-      AMessenger : IMyMessenger);
-  end;
-
-  IMyMessenger = interface
-    procedure Send(
-      const AEvent   : IMyEvent;
-      const AMessage : String);
-  end;
-{$ENDREGION}
-{}
+  Iterator in 'Patterns\Behavioral\Iterator.pas',
+  Mediator in 'Patterns\Behavioral\Mediator.pas',
+  Memento in 'Patterns\Behavioral\Memento.pas',
+  Observer in 'Patterns\Behavioral\Observer.pas';
 
 var
   i : Integer;
@@ -156,6 +122,15 @@ var
   {$ENDREGION}
   {$REGION ' Iterator '}
   SocialClient : ISocialClient;
+  {$ENDREGION}
+  {$REGION ' Mediator '}
+  MediatorContext : IMediatorContext;
+  {$ENDREGION}
+  {$REGION ' Memento '}
+  TextEditorClient : ITextEditorClient;
+  {$ENDREGION}
+  {$REGION ' Observer '}
+  ObserverContext : IObserverContext;
   {$ENDREGION}
 
 begin
@@ -493,9 +468,25 @@ begin
     {$ENDREGION}
 
     {$REGION ' Iterator '}
-    SocialClient := TSocialClient.Create(TSocialSpammer.Create());
-    SocialClient.SendMessagesToFriends();
-    SocialClient.SendMessagesToEnemies();
+//    SocialClient := TSocialClient.Create(TSocialSpammer.Create());
+//    SocialClient.SendMessagesToFriends();
+//    SocialClient.SendMessagesToEnemies();
+    {$ENDREGION}
+
+    {$REGION ' Mediator '}
+//    MediatorContext := TMediatorContext.Create();
+//    MediatorContext.UserLikedAllNews();
+//    MediatorContext.UserDislikedAllNews();
+    {$ENDREGION}
+
+    {$REGION ' Memento '}
+//    TextEditorClient := TTextEditorClient.Create();
+//    TextEditorClient.DoSomeWork();
+    {$ENDREGION}
+
+    {$REGION ' Observer '}
+    ObserverContext := TObserverContext.Create();
+    ObserverContext.DoSomeWork();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
