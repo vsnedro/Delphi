@@ -25,7 +25,8 @@ uses
   ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas',
   Command in 'Patterns\Behavioral\Command.pas',
   Iterator in 'Patterns\Behavioral\Iterator.pas',
-  Mediator in 'Patterns\Behavioral\Mediator.pas';
+  Mediator in 'Patterns\Behavioral\Mediator.pas',
+  Memento in 'Patterns\Behavioral\Memento.pas';
 
 {}
 {$REGION ' Custom Observer '}
@@ -160,6 +161,9 @@ var
   {$ENDREGION}
   {$REGION ' Mediator '}
   MediatorContext : IMediatorContext;
+  {$ENDREGION}
+  {$REGION ' Memento '}
+  TextEditorClient : ITextEditorClient;
   {$ENDREGION}
 
 begin
@@ -503,9 +507,14 @@ begin
     {$ENDREGION}
 
     {$REGION ' Mediator '}
-    MediatorContext := TMediatorContext.Create();
-    MediatorContext.UserLikedAllNews();
-    MediatorContext.UserDislikedAllNews();
+//    MediatorContext := TMediatorContext.Create();
+//    MediatorContext.UserLikedAllNews();
+//    MediatorContext.UserDislikedAllNews();
+    {$ENDREGION}
+
+    {$REGION ' Memento '}
+    TextEditorClient := TTextEditorClient.Create();
+    TextEditorClient.DoSomeWork();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');

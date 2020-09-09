@@ -175,6 +175,7 @@
         <DCCReference Include="Patterns\Behavioral\Command.pas"/>
         <DCCReference Include="Patterns\Behavioral\Iterator.pas"/>
         <DCCReference Include="Patterns\Behavioral\Mediator.pas"/>
+        <DCCReference Include="Patterns\Behavioral\Memento.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
