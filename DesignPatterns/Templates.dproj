@@ -171,11 +171,10 @@
         <DCCReference Include="Patterns\Creational\Builder.pas"/>
         <DCCReference Include="Patterns\Creational\Prototype.pas"/>
         <DCCReference Include="Patterns\Creational\Singleton.pas"/>
-        <DCCReference Include="Patterns\Behavioral\ChainOfResponsibility.pas">
-            <Form>$REGION &apos; Custom Observer &apos;</Form>
-        </DCCReference>
+        <DCCReference Include="Patterns\Behavioral\ChainOfResponsibility.pas"/>
         <DCCReference Include="Patterns\Behavioral\Command.pas"/>
         <DCCReference Include="Patterns\Behavioral\Iterator.pas"/>
+        <DCCReference Include="Patterns\Behavioral\Mediator.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

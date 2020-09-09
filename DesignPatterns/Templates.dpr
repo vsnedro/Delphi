@@ -24,7 +24,8 @@ uses
   Singleton in 'Patterns\Creational\Singleton.pas',
   ChainOfResponsibility in 'Patterns\Behavioral\ChainOfResponsibility.pas',
   Command in 'Patterns\Behavioral\Command.pas',
-  Iterator in 'Patterns\Behavioral\Iterator.pas';
+  Iterator in 'Patterns\Behavioral\Iterator.pas',
+  Mediator in 'Patterns\Behavioral\Mediator.pas';
 
 {}
 {$REGION ' Custom Observer '}
@@ -156,6 +157,9 @@ var
   {$ENDREGION}
   {$REGION ' Iterator '}
   SocialClient : ISocialClient;
+  {$ENDREGION}
+  {$REGION ' Mediator '}
+  MediatorContext : IMediatorContext;
   {$ENDREGION}
 
 begin
@@ -493,9 +497,15 @@ begin
     {$ENDREGION}
 
     {$REGION ' Iterator '}
-    SocialClient := TSocialClient.Create(TSocialSpammer.Create());
-    SocialClient.SendMessagesToFriends();
-    SocialClient.SendMessagesToEnemies();
+//    SocialClient := TSocialClient.Create(TSocialSpammer.Create());
+//    SocialClient.SendMessagesToFriends();
+//    SocialClient.SendMessagesToEnemies();
+    {$ENDREGION}
+
+    {$REGION ' Mediator '}
+    MediatorContext := TMediatorContext.Create();
+    MediatorContext.UserLikedAllNews();
+    MediatorContext.UserDislikedAllNews();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
