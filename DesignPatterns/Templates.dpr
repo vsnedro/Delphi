@@ -26,44 +26,8 @@ uses
   Command in 'Patterns\Behavioral\Command.pas',
   Iterator in 'Patterns\Behavioral\Iterator.pas',
   Mediator in 'Patterns\Behavioral\Mediator.pas',
-  Memento in 'Patterns\Behavioral\Memento.pas';
-
-{}
-{$REGION ' Custom Observer '}
-type
-  IMyObserver = interface
-    function GetPhone() : String;
-    function GetEmail() : String;
-    function GetSkype() : String;
-    function GetTelegram() : String;
-    function GetWhatsApp() : String;
-    function GetViber() : String;
-
-    property Phone: String read GetPhone;
-    property Email: String read GetEmail;
-    property Skype: String read GetSkype;
-    property Telegram: String read GetTelegram;
-    property WhatsApp: String read GetWhatsApp;
-    property Viber: String read GetViber;
-  end;
-
-type
-  IMyMessenger = interface;
-
-  IMyEvent = interface
-    procedure Subscribe(
-      AMessenger : IMyMessenger);
-    procedure Unsubscribe(
-      AMessenger : IMyMessenger);
-  end;
-
-  IMyMessenger = interface
-    procedure Send(
-      const AEvent   : IMyEvent;
-      const AMessage : String);
-  end;
-{$ENDREGION}
-{}
+  Memento in 'Patterns\Behavioral\Memento.pas',
+  Observer in 'Patterns\Behavioral\Observer.pas';
 
 var
   i : Integer;
@@ -164,6 +128,9 @@ var
   {$ENDREGION}
   {$REGION ' Memento '}
   TextEditorClient : ITextEditorClient;
+  {$ENDREGION}
+  {$REGION ' Observer '}
+  ObserverContext : IObserverContext;
   {$ENDREGION}
 
 begin
@@ -513,8 +480,13 @@ begin
     {$ENDREGION}
 
     {$REGION ' Memento '}
-    TextEditorClient := TTextEditorClient.Create();
-    TextEditorClient.DoSomeWork();
+//    TextEditorClient := TTextEditorClient.Create();
+//    TextEditorClient.DoSomeWork();
+    {$ENDREGION}
+
+    {$REGION ' Observer '}
+    ObserverContext := TObserverContext.Create();
+    ObserverContext.DoSomeWork();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
