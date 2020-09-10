@@ -180,6 +180,7 @@
         <DCCReference Include="Patterns\Behavioral\State.pas"/>
         <DCCReference Include="Patterns\Behavioral\Strategy.pas"/>
         <DCCReference Include="Patterns\Behavioral\TemplateMethod.pas"/>
+        <DCCReference Include="Patterns\Behavioral\Visitor.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

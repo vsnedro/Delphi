@@ -30,7 +30,8 @@ uses
   Observer in 'Patterns\Behavioral\Observer.pas',
   State in 'Patterns\Behavioral\State.pas',
   Strategy in 'Patterns\Behavioral\Strategy.pas',
-  TemplateMethod in 'Patterns\Behavioral\TemplateMethod.pas';
+  TemplateMethod in 'Patterns\Behavioral\TemplateMethod.pas',
+  Visitor in 'Patterns\Behavioral\Visitor.pas';
 
 var
   i : Integer;
@@ -144,6 +145,13 @@ var
   {$ENDREGION}
   {$REGION ' Template Method '}
   GameContext : IGameContext;
+  {$ENDREGION}
+  {$REGION ' Visitor '}
+  MyGraphicsVisitor : IMyGraphicsVisitor;
+  MyDot   : IMyGraphics;
+  MyShape : IMyGraphics;
+
+  NotificationClient : INotificationClient;
   {$ENDREGION}
 
 begin
@@ -527,9 +535,23 @@ begin
     {$ENDREGION}
 
     {$REGION ' Template Method '}
-    GameContext := TGameContext.Create();
-    GameContext.TakePlayerTurn();
-    GameContext.TakeAITurn();
+//    GameContext := TGameContext.Create();
+//    GameContext.TakePlayerTurn();
+//    GameContext.TakeAITurn();
+    {$ENDREGION}
+
+    {$REGION ' Visitor '}
+    MyGraphicsVisitor := TMyGraphicsVisitor.Create();
+    MyDot   := TMyDot.Create();
+    MyShape := TMyShape.Create();
+    MyDot  .Accept(MyGraphicsVisitor);
+    MyShape.Accept(MyGraphicsVisitor);
+
+    Writeln('');
+
+    NotificationClient := TNotificationClient.Create();
+    NotificationClient.GetSomeMessagesWithDefaultPolicy();
+    NotificationClient.GetSomeMessagesWithNightPolicy();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
