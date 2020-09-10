@@ -27,7 +27,11 @@ uses
   Iterator in 'Patterns\Behavioral\Iterator.pas',
   Mediator in 'Patterns\Behavioral\Mediator.pas',
   Memento in 'Patterns\Behavioral\Memento.pas',
-  Observer in 'Patterns\Behavioral\Observer.pas';
+  Observer in 'Patterns\Behavioral\Observer.pas',
+  State in 'Patterns\Behavioral\State.pas',
+  Strategy in 'Patterns\Behavioral\Strategy.pas',
+  TemplateMethod in 'Patterns\Behavioral\TemplateMethod.pas',
+  Visitor in 'Patterns\Behavioral\Visitor.pas';
 
 var
   i : Integer;
@@ -131,6 +135,23 @@ var
   {$ENDREGION}
   {$REGION ' Observer '}
   ObserverContext : IObserverContext;
+  {$ENDREGION}
+  {$REGION ' State '}
+  Player       : IUIMusicPlayer;
+  PlayerClient : IUIPlayerClient;
+  {$ENDREGION}
+  {$REGION ' Strategy '}
+  MapNavigatorClient : IMapNavigatorClient;
+  {$ENDREGION}
+  {$REGION ' Template Method '}
+  GameContext : IGameContext;
+  {$ENDREGION}
+  {$REGION ' Visitor '}
+  MyGraphicsVisitor : IMyGraphicsVisitor;
+  MyDot   : IMyGraphics;
+  MyShape : IMyGraphics;
+
+  NotificationClient : INotificationClient;
   {$ENDREGION}
 
 begin
@@ -485,8 +506,52 @@ begin
     {$ENDREGION}
 
     {$REGION ' Observer '}
-    ObserverContext := TObserverContext.Create();
-    ObserverContext.DoSomeWork();
+//    ObserverContext := TObserverContext.Create();
+//    ObserverContext.DoSomeWork();
+    {$ENDREGION}
+
+    {$REGION ' State '}
+//    Player       := TMusicPlayer.Create();
+//    PlayerClient := TUIPlayerClient.Create(Player);
+//
+//    PlayerClient.Player_Play();
+//    PlayerClient.Player_Lock();
+//    PlayerClient.Player_Stop();
+//    PlayerClient.Player_Lock();
+//    PlayerClient.Player_Stop();
+//    PlayerClient.Player_Next();
+//    PlayerClient.Player_Play();
+//    PlayerClient.Player_Next();
+//    PlayerClient.Player_Prev();
+//    PlayerClient.Player_Play();
+//    PlayerClient.Player_Stop();
+    {$ENDREGION}
+
+    {$REGION ' Strategy '}
+//    MapNavigatorClient := TMapNavigatorClient.Create(TMapNavigator.Create());
+//    MapNavigatorClient.GetRouteOnFoot();
+//    MapNavigatorClient.GetRouteOnCar();
+//    MapNavigatorClient.GetRouteOnPublicTransport();
+    {$ENDREGION}
+
+    {$REGION ' Template Method '}
+//    GameContext := TGameContext.Create();
+//    GameContext.TakePlayerTurn();
+//    GameContext.TakeAITurn();
+    {$ENDREGION}
+
+    {$REGION ' Visitor '}
+    MyGraphicsVisitor := TMyGraphicsVisitor.Create();
+    MyDot   := TMyDot.Create();
+    MyShape := TMyShape.Create();
+    MyDot  .Accept(MyGraphicsVisitor);
+    MyShape.Accept(MyGraphicsVisitor);
+
+    Writeln('');
+
+    NotificationClient := TNotificationClient.Create();
+    NotificationClient.GetSomeMessagesWithDefaultPolicy();
+    NotificationClient.GetSomeMessagesWithNightPolicy();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
