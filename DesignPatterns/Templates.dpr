@@ -27,7 +27,8 @@ uses
   Iterator in 'Patterns\Behavioral\Iterator.pas',
   Mediator in 'Patterns\Behavioral\Mediator.pas',
   Memento in 'Patterns\Behavioral\Memento.pas',
-  Observer in 'Patterns\Behavioral\Observer.pas';
+  Observer in 'Patterns\Behavioral\Observer.pas',
+  State in 'Patterns\Behavioral\State.pas';
 
 var
   i : Integer;
@@ -131,6 +132,10 @@ var
   {$ENDREGION}
   {$REGION ' Observer '}
   ObserverContext : IObserverContext;
+  {$ENDREGION}
+  {$REGION ' State '}
+  Player       : IUIMusicPlayer;
+  PlayerClient : IUIPlayerClient;
   {$ENDREGION}
 
 begin
@@ -485,8 +490,25 @@ begin
     {$ENDREGION}
 
     {$REGION ' Observer '}
-    ObserverContext := TObserverContext.Create();
-    ObserverContext.DoSomeWork();
+//    ObserverContext := TObserverContext.Create();
+//    ObserverContext.DoSomeWork();
+    {$ENDREGION}
+
+    {$REGION ' State '}
+    Player       := TMusicPlayer.Create();
+    PlayerClient := TUIPlayerClient.Create(Player);
+
+    PlayerClient.Player_Play();
+    PlayerClient.Player_Lock();
+    PlayerClient.Player_Stop();
+    PlayerClient.Player_Lock();
+    PlayerClient.Player_Stop();
+    PlayerClient.Player_Next();
+    PlayerClient.Player_Play();
+    PlayerClient.Player_Next();
+    PlayerClient.Player_Prev();
+    PlayerClient.Player_Play();
+    PlayerClient.Player_Stop();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
