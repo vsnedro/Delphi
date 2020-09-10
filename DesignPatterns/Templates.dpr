@@ -29,7 +29,8 @@ uses
   Memento in 'Patterns\Behavioral\Memento.pas',
   Observer in 'Patterns\Behavioral\Observer.pas',
   State in 'Patterns\Behavioral\State.pas',
-  Strategy in 'Patterns\Behavioral\Strategy.pas';
+  Strategy in 'Patterns\Behavioral\Strategy.pas',
+  TemplateMethod in 'Patterns\Behavioral\TemplateMethod.pas';
 
 var
   i : Integer;
@@ -140,6 +141,9 @@ var
   {$ENDREGION}
   {$REGION ' Strategy '}
   MapNavigatorClient : IMapNavigatorClient;
+  {$ENDREGION}
+  {$REGION ' Template Method '}
+  GameContext : IGameContext;
   {$ENDREGION}
 
 begin
@@ -516,10 +520,16 @@ begin
     {$ENDREGION}
 
     {$REGION ' Strategy '}
-    MapNavigatorClient := TMapNavigatorClient.Create(TMapNavigator.Create());
-    MapNavigatorClient.GetRouteOnFoot();
-    MapNavigatorClient.GetRouteOnCar();
-    MapNavigatorClient.GetRouteOnPublicTransport();
+//    MapNavigatorClient := TMapNavigatorClient.Create(TMapNavigator.Create());
+//    MapNavigatorClient.GetRouteOnFoot();
+//    MapNavigatorClient.GetRouteOnCar();
+//    MapNavigatorClient.GetRouteOnPublicTransport();
+    {$ENDREGION}
+
+    {$REGION ' Template Method '}
+    GameContext := TGameContext.Create();
+    GameContext.TakePlayerTurn();
+    GameContext.TakeAITurn();
     {$ENDREGION}
 
     Writeln(sLineBreak + 'Press Enter to exit...');
