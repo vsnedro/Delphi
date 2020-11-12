@@ -46,7 +46,7 @@ begin
   if (Length(TEdt_Min.Text) <= 0) or not TryStrToInt(TEdt_Min.Text, {out}Min) then
     TEdt_Min.Text := '1';
   if (Length(TEdt_Max.Text) <= 0) or not TryStrToInt(TEdt_Max.Text, {out}Max) then
-    TEdt_Min.Text := '100';
+    TEdt_Max.Text := '100';
 
   Min := StrToInt(TEdt_Min.Text);
   Max := StrToInt(TEdt_Max.Text);

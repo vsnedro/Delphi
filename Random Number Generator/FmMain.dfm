@@ -23,10 +23,6 @@ object Fm_Main: TFm_Main
     Height = 201
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 16
-    ExplicitTop = 40
-    ExplicitWidth = 177
-    ExplicitHeight = 198
     object Lbl_1: TLabel
       Left = 24
       Top = 32
@@ -57,8 +53,6 @@ object Fm_Main: TFm_Main
       Align = alTop
       Alignment = taCenter
       Caption = 'Random Number Generator'
-      ExplicitLeft = 14
-      ExplicitTop = 10
       ExplicitWidth = 131
     end
     object TEdt_Min: TEdit
