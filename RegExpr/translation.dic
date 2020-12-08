@@ -1,0 +1,33 @@
+﻿[1033]
+0=English (United States)
+100=Regular expression
+200=Check
+300=Options
+310=IgnoreCase
+311=Specifies case-insensitive matching.
+320=MultiLine
+321=Multiline mode. Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.
+330=ExplicitCapture
+331=Specifies that the only valid captures are explicitly named or numbered groups of the form (?<name>…). This allows unnamed parentheses to act as noncapturing groups without the syntactic clumsiness of the expression (?:…).
+340=Compiled
+341=Specifies that the regular expression is compiled to an assembly. This yields faster execution but increases startup time. This value should not be assigned to the Options property when calling the CompileToAssembly method.
+350=SingleLine
+351=Specifies single-line mode. Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).
+360=IgnorePatternSpace
+361=Eliminates unescaped white space from the pattern and enables comments marked with #. However, the IgnorePatternWhitespace value does not affect or eliminate white space in character classes.
+400=Text
+500=Result
+1001=Found a match
+1002=No matches found
+1003=Group %d: %s
+
+[1049]
+0=Russian
+100=Регулярное выражение 
+200=Проверить
+300=Опции
+400=Текст
+500=Результат
+1001=Найдено совпадение
+1002=Совпадений не найдено
+1003=Группа %d: %s
